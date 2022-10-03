@@ -6,7 +6,7 @@ from time import sleep
 def producer(sl, size):
 	
     produced = 1
-    while True:
+    for i in range(9):
         sleep(random())
         print(f"Job {produced} started \n")
         produced += 1
@@ -25,7 +25,7 @@ def consumer(sl, size):
 
     consumed = -1
 
-    while True:
+    for i in range(9):
         sleep(random())
 
         while (sl[-1] == 0): 
@@ -42,8 +42,8 @@ if __name__ =="__main__":
     with SharedMemoryManager() as smm:
         sl = smm.ShareableList([0]*(size+3))
         # creating thread
-        t1 = threading.Thread(target=producer, args=(sl, size))
-        t2 = threading.Thread(target=consumer, args=(sl, size))
+        t1 = threading.Thread(target=consumer, args=(sl, size))
+        t2 = threading.Thread(target=producer, args=(sl, size))
 
         # starting thread 1
         t1.start()

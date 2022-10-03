@@ -3,6 +3,7 @@
 #include<unistd.h>
 #include<pthread.h>
 #define BUFFER_SIZE 10
+
 int in = 0;
 int out = 0;
 int buffer[BUFFER_SIZE];
