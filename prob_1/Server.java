@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Server {
 	
-	ServerSocket sock	;
+	ServerSocket sock;
 	Socket socket; // To store the client socket object
 	BufferedReader br;// To read data
 	PrintWriter out;// To write data
@@ -26,15 +26,17 @@ public class Server {
 			ioe.printStackTrace();
 		}
 	}
+
 	
 	public void Read() {
 		//thread to continuously read data coming from the client
-		Runnable readOne=()->{
+		
+		Runnable readOne=()-> {
 			
 			try {
 				while(true) {
 					
-						String msg=br.readLine();// the message from the client
+						String msg = br.readLine();// the message from the client
 						if(msg.equals("FINISH")) {
 							System.out.println("Client has terminated the chat");
 							socket.close();
@@ -44,7 +46,7 @@ public class Server {
 					
 				}
 			System.out.println("Connection Down");
-			}catch (IOException ioe) {
+			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
 		};
@@ -59,8 +61,8 @@ public class Server {
 			try {
 				while(!socket.isClosed()) {
 					
-						BufferedReader br1=new BufferedReader(new InputStreamReader(System.in));// To take input from the console
-						String content=br1.readLine();
+						BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));// To take input from the console
+						String content = br1.readLine();
 						
 						out.println(content);// sent to client
 						out.flush();
